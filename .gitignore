@@ -3,3 +3,5 @@
 *.bin
 *.dis
 *.imx
+*.code-workspace
+*.json
