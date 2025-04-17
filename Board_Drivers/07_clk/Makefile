@@ -1,5 +1,5 @@
 CROSS_COMPILE 	:= arm-linux-gnueabihf-
-TARGET			:= keyc
+TARGET			:= clk
 CC 				:= $(CROSS_COMPILE)gcc
 LD				:= $(CROSS_COMPILE)ld
 OBJCOPY			:= $(CROSS_COMPILE)objcopy
@@ -29,7 +29,7 @@ SRC_C			:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c ))
 OBJ				:= $(patsubst %, obj/%, $(notdir $(SRC_S:.s=.o)) $(notdir $(SRC_C:.c=.o)))
 
 $(TARGET).bin	: $(OBJ)
-	$(LD) -T keyc.ld $^ -o $(TARGET).elf
+	$(LD) -T $(TARGET).ld $^ -o $(TARGET).elf
 	$(OBJCOPY) -O binary -S $(TARGET).elf $@
 	$(OBJDUMP) -D -m arm $(TARGET).elf > $(TARGET).dis
 
